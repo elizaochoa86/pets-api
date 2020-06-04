@@ -2,6 +2,7 @@ package com.javaprojects.petsapi.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -11,7 +12,7 @@ public class Race {
     private String name;
     private String description;
 
-    @OneToMany
+    @ManyToOne
     private Species species;
 
     public int getId() {
