@@ -1,14 +1,9 @@
 package com.javaprojects.petsapi.dto;
 
-import com.javaprojects.petsapi.entities.Race;
-
-import java.util.List;
-
 public class SpeciesDTO {
     private int id;
     private String name;
     private String description;
-    private List<Race> races;
 
     public int getId() {
         return id;
@@ -32,13 +27,5 @@ public class SpeciesDTO {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public List<Race> getRaces() {
-        return races;
-    }
-
-    public void setRaces(List<Race> races) {
-        this.races = races;
     }
 }

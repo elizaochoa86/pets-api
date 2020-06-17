@@ -4,13 +4,14 @@ import com.javaprojects.petsapi.dao.DAO;
 import com.javaprojects.petsapi.dto.SpeciesDTO;
 import com.javaprojects.petsapi.entities.Species;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@org.springframework.stereotype.Service
+@Service
 public class SpeciesServiceImpl implements SpeciesService {
 
     @Autowired

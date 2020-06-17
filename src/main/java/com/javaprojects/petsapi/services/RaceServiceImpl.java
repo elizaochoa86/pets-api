@@ -6,14 +6,15 @@ import com.javaprojects.petsapi.dto.SpeciesDTO;
 import com.javaprojects.petsapi.entities.Race;
 import com.javaprojects.petsapi.entities.Species;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@org.springframework.stereotype.Service
-public class RaceServiceImpl implements Service<RaceDTO> {
+@Service
+public class RaceServiceImpl implements RaceService {
 
     @Autowired
     private DAO<Race> raceDAO;
@@ -73,13 +74,16 @@ public class RaceServiceImpl implements Service<RaceDTO> {
         return racesDTO;
     }
 
-    private Optional<RaceDTO> convertToRacesDTO(Race race){
+    @Override
+    public Optional<RaceDTO> convertToRacesDTO(Race race){
 
         if(race != null){
             RaceDTO raceDTO = new RaceDTO();
             raceDTO.setId(race.getId());
             raceDTO.setName(race.getName());
             raceDTO.setDescription(race.getDescription());
+            SpeciesDTO species = speciesService.convertToSpeciesDTO(race.getSpecies()).orElse(new SpeciesDTO());
+            raceDTO.setSpecies(species);
             return Optional.of(raceDTO);
         }
 
@@ -93,7 +97,8 @@ public class RaceServiceImpl implements Service<RaceDTO> {
         race.setName(raceDTO.getName());
         race.setDescription(raceDTO.getDescription());
 
-        Species species = speciesService.convertToSpecies(raceDTO.getSpecies());
+        Species species = new Species();
+        species.setId(raceDTO.getSpecies().getId());
 
         race.setSpecies(species);
 

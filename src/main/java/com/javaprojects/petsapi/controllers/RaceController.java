@@ -1,7 +1,7 @@
 package com.javaprojects.petsapi.controllers;
 
 import com.javaprojects.petsapi.dto.RaceDTO;
-import com.javaprojects.petsapi.services.Service;
+import com.javaprojects.petsapi.services.RaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +12,7 @@ import java.util.Optional;
 public class RaceController {
 
     @Autowired
-    private Service<RaceDTO> service;
+    private RaceService service;
 
     @GetMapping("/api/race")
     public List<RaceDTO> getAll(){

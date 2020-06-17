@@ -73,11 +73,11 @@ public class RaceDaoImplTest {
         Assert.assertEquals("Cocker Spainel", dao.getById(1).getName());
         Assert.assertEquals("The Cocker Spainel is a dog that originated in Spain", dao.getById(1).getDescription());
 
-        Species species1 = dao.getById(1).getSpecies();
+        species = dao.getById(1).getSpecies();
 
-        Assert.assertEquals(0, species1.getId());
-        Assert.assertEquals("Dog", species1.getName());
-        Assert.assertEquals("Dogs have four legs", species1.getDescription());
+        Assert.assertEquals(0, species.getId());
+        Assert.assertEquals("Dog", species.getName());
+        Assert.assertEquals("Dogs have four legs", species.getDescription());
     }
 
     @Test
@@ -97,11 +97,11 @@ public class RaceDaoImplTest {
         Assert.assertEquals("English Cocker Spainel", dao.getById(2).getName());
         Assert.assertEquals("The English Cocker Spainel is a dog that originated in EUA", dao.getById(2).getDescription());
 
-        Species species1 = dao.getById(2).getSpecies();
+        species = dao.getById(2).getSpecies();
 
-        Assert.assertEquals(0, species1.getId());
-        Assert.assertEquals("Dog", species1.getName());
-        Assert.assertEquals("Dogs have four legs", species1.getDescription());
+        Assert.assertEquals(0, species.getId());
+        Assert.assertEquals("Dog", species.getName());
+        Assert.assertEquals("Dogs have four legs", species.getDescription());
 
         race = new Race();
         race.setId(2);
@@ -137,5 +137,4 @@ public class RaceDaoImplTest {
 
         Assert.assertNull(race1);
     }
-
 }
