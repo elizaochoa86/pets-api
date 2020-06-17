@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @EnableTransactionManagement
+@ImportAutoConfiguration(classes = BeanConfig.class)
 public class PetsApplication {
     public static void main(String[] args){
         SpringApplication.run(PetsApplication.class, args);

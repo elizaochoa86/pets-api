@@ -3,7 +3,6 @@ package com.javaprojects.petsapi.dao;
 import com.javaprojects.petsapi.entities.Species;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -45,7 +44,7 @@ public class SpeciesDaoImplTest {
     }
 
     @Test
-    public void add(){
+    public void addTest(){
         Species species = new Species();
         species.setId(1);
         species.setName("Bird");
@@ -55,6 +54,49 @@ public class SpeciesDaoImplTest {
 
         Assert.assertEquals(1, dao.getById(1).getId());
         Assert.assertEquals("Bird", dao.getById(1).getName());
+    }
+
+    @Test
+    public void updateTest(){
+        Species species = new Species();
+        species.setId(2);
+        species.setName("Cow");
+        species.setDescription("Cow has four legs and milk");
+
+        dao.add(species);
+
+        Assert.assertEquals(2, dao.getById(2).getId());
+        Assert.assertEquals("Cow", dao.getById(2).getName());
+        Assert.assertEquals("Cow has four legs and milk", dao.getById(2).getDescription());
+
+        Species speciesUpdated = new Species();
+        speciesUpdated.setId(2);
+        speciesUpdated.setName("Cow");
+        speciesUpdated.setDescription("Cow has four legs");
+
+        dao.update(speciesUpdated);
+
+        Assert.assertEquals(2, dao.getById(2).getId());
+        Assert.assertEquals("Cow", dao.getById(2).getName());
+        Assert.assertEquals("Cow has four legs", dao.getById(2).getDescription());
+    }
+
+    @Test
+    public void deleteTest(){
+        Species species = new Species();
+        species.setId(3);
+        species.setName("Unknown");
+        species.setDescription("Unknown");
+
+        dao.add(species);
+
+        Assert.assertEquals(3, dao.getById(3).getId());
+
+        dao.delete(3);
+
+        Species species1 = dao.getById(3);
+
+        Assert.assertNull(species1);
     }
 
 }

@@ -5,15 +5,15 @@ import com.javaprojects.petsapi.entities.Species;
 import java.util.List;
 import java.util.Optional;
 
-public interface Services<T> {
+public interface Service<T> {
 
     List<T> getAll();
 
     Optional<T> getById(int id);
 
-    void add(Species species);
+    void add(T t);
 
-    void update(Species species);
+    void update(T t);
 
-    void delete(Species species);
+    void delete(int id);
 }
