@@ -32,7 +32,7 @@ public class RaceServiceImpl implements Service<RaceDTO> {
     @Override
     @Transactional
     public Optional<RaceDTO> getById(int id) {
-        return Optional.empty();
+        return convertToRacesDTO(raceDAO.getById(id));
     }
 
     @Override
@@ -44,13 +44,13 @@ public class RaceServiceImpl implements Service<RaceDTO> {
     @Override
     @Transactional
     public void update(RaceDTO raceDTO) {
-
+        raceDAO.update(convertToRace(raceDTO));
     }
 
     @Override
     @Transactional
     public void delete(int id) {
-
+        raceDAO.delete(id);
     }
 
     private List<RaceDTO> convertToListRaceDTO(List<Race> races){

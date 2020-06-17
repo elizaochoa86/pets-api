@@ -79,13 +79,17 @@ public class RaceDaoImplTest {
         Assert.assertEquals("Dog", species1.getName());
         Assert.assertEquals("Dogs have four legs", species1.getDescription());
     }
-/*
+
     @Test
     public void updateTest(){
-        race = new Race();
+        Species species = new Species();
+        species.setId(0);
+
+        Race race = new Race();
         race.setId(2);
         race.setName("English Cocker Spainel");
         race.setDescription("The English Cocker Spainel is a dog that originated in EUA");
+        race.setSpecies(species);
 
         dao.add(race);
 
@@ -93,10 +97,17 @@ public class RaceDaoImplTest {
         Assert.assertEquals("English Cocker Spainel", dao.getById(2).getName());
         Assert.assertEquals("The English Cocker Spainel is a dog that originated in EUA", dao.getById(2).getDescription());
 
+        Species species1 = dao.getById(2).getSpecies();
+
+        Assert.assertEquals(0, species1.getId());
+        Assert.assertEquals("Dog", species1.getName());
+        Assert.assertEquals("Dogs have four legs", species1.getDescription());
+
         race = new Race();
         race.setId(2);
         race.setName("English Cocker Spainel");
         race.setDescription("The English Cocker Spainel is a dog that originated in England");
+        race.setSpecies(species);
 
         dao.update(race);
 
@@ -107,10 +118,14 @@ public class RaceDaoImplTest {
 
     @Test
     public void deleteTest(){
-        race = new Race();
+        Species species = new Species();
+        species.setId(0);
+
+        Race race = new Race();
         race.setId(3);
         race.setName("Unknown");
         race.setDescription("Unknown");
+        race.setSpecies(species);
 
         dao.add(race);
 
@@ -122,7 +137,5 @@ public class RaceDaoImplTest {
 
         Assert.assertNull(race1);
     }
-
- */
 
 }
