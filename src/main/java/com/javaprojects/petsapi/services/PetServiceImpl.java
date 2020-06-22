@@ -12,6 +12,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PetServiceImpl implements PetService{
@@ -54,38 +55,19 @@ public class PetServiceImpl implements PetService{
     }
 
     private List<PetDTO> convertToListPetDTO(List<Pet> pets){
-        List<PetDTO> petsDTO = new ArrayList<PetDTO>();
+        List<PetDTO> petsDTO = pets.stream().map(pet -> {
+            RaceDTO raceDTO = raceService.convertToRacesDTO(pet.getRace()).orElse(new RaceDTO());
+            return new PetDTO(pet.getId(), pet.getName(), pet.getAge(), raceDTO, pet.isHasChip(), pet.isVaccinated());
+        }).collect(Collectors.toList());
 
-        for (Pet pet:
-                pets) {
-            PetDTO petDTO = new PetDTO();
-
-            petDTO.setId(pet.getId());
-            petDTO.setName(pet.getName());
-            petDTO.setAge(pet.getAge());
-            petDTO.setHasChip(pet.isHasChip());
-            petDTO.setVaccinated(pet.isVaccinated());
-
-            RaceDTO race = raceService.convertToRacesDTO(pet.getRace()).orElse(new RaceDTO());
-
-            petDTO.setRace(race);
-
-            petsDTO.add(petDTO);
-        }
         return petsDTO;
     }
 
     private Optional<PetDTO> convertToRacesDTO(Pet pet){
 
         if(pet != null){
-            PetDTO petDTO = new PetDTO();
-            petDTO.setId(pet.getId());
-            petDTO.setName(pet.getName());
-            petDTO.setAge(pet.getAge());
-            petDTO.setHasChip(pet.isHasChip());
-            petDTO.setVaccinated(pet.isVaccinated());
-
-            petDTO.setRace(raceService.convertToRacesDTO(pet.getRace()).orElse(new RaceDTO()));
+            RaceDTO raceDTO = raceService.convertToRacesDTO(pet.getRace()).orElse(new RaceDTO());
+            PetDTO petDTO = new PetDTO(pet.getId(), pet.getName(), pet.getAge(), raceDTO, pet.isHasChip(), pet.isVaccinated());
 
             return Optional.of(petDTO);
         }

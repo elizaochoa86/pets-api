@@ -5,6 +5,14 @@ public class SpeciesDTO {
     private String name;
     private String description;
 
+    public SpeciesDTO(){}
+
+    public SpeciesDTO(int id, String name, String description){
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
     public int getId() {
         return id;
     }

@@ -34,12 +34,18 @@ public class PetController {
 
     @PutMapping("/api/pet/{id}")
     public void update(@RequestBody PetDTO pet, @PathVariable int id){
+        if(!service.getById(id).isPresent()){
+            throw new NotFoundException();
+        }
         pet.setId(id);
         service.update(pet);
     }
 
     @DeleteMapping("/api/pet/{id}")
     public  void delete(@PathVariable int id){
+        if(!service.getById(id).isPresent()){
+            throw new NotFoundException();
+        }
         service.delete(id);
     }
 }

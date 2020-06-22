@@ -35,12 +35,18 @@ public class SpeciesController {
 
     @PutMapping("/api/species/{id}")
     public void update(@RequestBody SpeciesDTO speciesDTO, @PathVariable int id){
+        if(!service.getById(id).isPresent()){
+            throw new NotFoundException();
+        }
         speciesDTO.setId(id);
         service.update(speciesDTO);
     }
 
     @DeleteMapping("/api/species/{id}")
     public  void delete(@PathVariable int id){
+        if(!service.getById(id).isPresent()){
+            throw new NotFoundException();
+        }
         service.delete(id);
     }
 }

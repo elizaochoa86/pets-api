@@ -35,12 +35,18 @@ public class RaceController {
 
     @PutMapping("/api/race/{id}")
     public void update(@RequestBody RaceDTO race, @PathVariable int id){
+        if(!service.getById(id).isPresent()){
+            throw new NotFoundException();
+        }
         race.setId(id);
         service.update(race);
     }
 
     @DeleteMapping("/api/race/{id}")
     public  void delete(@PathVariable int id){
+        if(!service.getById(id).isPresent()){
+            throw new NotFoundException();
+        }
         service.delete(id);
     }
 

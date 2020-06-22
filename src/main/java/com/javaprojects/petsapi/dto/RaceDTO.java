@@ -10,6 +10,15 @@ public class RaceDTO {
 
     private SpeciesDTO species;
 
+    public RaceDTO(){}
+
+    public RaceDTO(int id, String name, String description, SpeciesDTO species){
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.species = species;
+    }
+
     public int getId() {
         return id;
     }

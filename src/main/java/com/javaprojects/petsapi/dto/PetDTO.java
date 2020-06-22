@@ -12,6 +12,17 @@ public class PetDTO {
     private boolean hasChip;
     private boolean vaccinated;
 
+    public PetDTO(){}
+
+    public PetDTO(int id, String name, int age, RaceDTO race, boolean hasChip, boolean vaccinated){
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.race = race;
+        this.hasChip = hasChip;
+        this.vaccinated = vaccinated;
+    }
+
     public int getId() {
         return id;
     }

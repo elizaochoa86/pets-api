@@ -12,6 +12,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class RaceServiceImpl implements RaceService {
@@ -55,22 +56,11 @@ public class RaceServiceImpl implements RaceService {
     }
 
     private List<RaceDTO> convertToListRaceDTO(List<Race> races){
-        List<RaceDTO> racesDTO = new ArrayList<RaceDTO>();
-
-        for (Race race:
-                races) {
-            RaceDTO raceDTO = new RaceDTO();
-
-            raceDTO.setId(race.getId());
-            raceDTO.setName(race.getName());
-            raceDTO.setDescription(race.getDescription());
-
+        List<RaceDTO> racesDTO = races.stream().map(race -> {
             SpeciesDTO species = speciesService.convertToSpeciesDTO(race.getSpecies()).orElse(new SpeciesDTO());
+            return new RaceDTO(race.getId(), race.getName(), race.getDescription(), species);
+        }).collect(Collectors.toList());
 
-            raceDTO.setSpecies(species);
-
-            racesDTO.add(raceDTO);
-        }
         return racesDTO;
     }
 
@@ -78,12 +68,9 @@ public class RaceServiceImpl implements RaceService {
     public Optional<RaceDTO> convertToRacesDTO(Race race){
 
         if(race != null){
-            RaceDTO raceDTO = new RaceDTO();
-            raceDTO.setId(race.getId());
-            raceDTO.setName(race.getName());
-            raceDTO.setDescription(race.getDescription());
             SpeciesDTO species = speciesService.convertToSpeciesDTO(race.getSpecies()).orElse(new SpeciesDTO());
-            raceDTO.setSpecies(species);
+            RaceDTO raceDTO = new RaceDTO(race.getId(), race.getName(), race.getDescription(), species);
+
             return Optional.of(raceDTO);
         }
 
