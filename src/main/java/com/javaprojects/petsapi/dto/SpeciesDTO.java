@@ -1,17 +1,17 @@
-package com.javaprojects.petsapi.entities;
+package com.javaprojects.petsapi.dto;
 
-import javax.persistence.*;
-
-@Entity
-public class Race {
-    @Id
+public class SpeciesDTO {
     private int id;
     private String name;
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name="species_id", nullable=false)
-    private Species species;
+    public SpeciesDTO(){}
+
+    public SpeciesDTO(int id, String name, String description){
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
 
     public int getId() {
         return id;
@@ -35,13 +35,5 @@ public class Race {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Species getSpecies() {
-        return species;
-    }
-
-    public void setSpecies(Species species) {
-        this.species = species;
     }
 }

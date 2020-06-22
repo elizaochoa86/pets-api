@@ -1,6 +1,10 @@
 package com.javaprojects.petsapi.entities;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.List;
@@ -12,7 +16,8 @@ public class Species {
     private String name;
     private String description;
 
-    @OneToMany
+    @OneToMany(mappedBy = "species")
+    @Fetch(FetchMode.SELECT)
     private List<Race> races;
 
     public int getId() {
