@@ -1,5 +1,6 @@
 package com.javaprojects.petsapi.dao;
 
+import com.javaprojects.petsapi.config.SimpleTestConfig;
 import com.javaprojects.petsapi.entities.Species;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,7 +14,7 @@ import java.util.List;
 @ContextConfiguration(
         classes = { SimpleTestConfig.class })
 @RunWith(SpringJUnit4ClassRunner.class)
-public class SpeciesDaoImplTest {
+public class SpecieDaoImplTest {
 
     @Autowired
     DAO<Species> dao;
