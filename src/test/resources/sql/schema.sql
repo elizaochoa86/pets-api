@@ -21,6 +21,7 @@ CREATE TABLE pet (
   age int NOT NULL,
   hasChip bit(1) NOT NULL,
   vaccinated bit(1) NOT NULL,
+  sex char(1) NOT NULL,
   race int NOT NULL,
   CONSTRAINT pet_ibfk_4 FOREIGN KEY (race) REFERENCES race (id)
 );

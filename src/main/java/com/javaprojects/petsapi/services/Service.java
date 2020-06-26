@@ -1,7 +1,5 @@
 package com.javaprojects.petsapi.services;
 
-import com.javaprojects.petsapi.entities.Species;
-
 import java.util.List;
 import java.util.Optional;
 

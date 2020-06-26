@@ -1,4 +1,4 @@
-package com.javaprojects.petsapi.dao;
+package com.javaprojects.petsapi.config;
 
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +7,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 import javax.sql.DataSource;
@@ -34,14 +33,5 @@ public class SimpleTestConfig {
         entityManager.setPersistenceProviderClass(HibernatePersistenceProvider.class);
         return entityManager;
     }
-
-    /*
-    @Bean
-    public LocalSessionFactoryBean sessionFactoryBean(@Autowired DataSource dataSource) {
-        final LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource);
-        sessionFactory.setPackagesToScan(new String[] { "com.javaprojects.petsapi" });
-        return sessionFactory;
-    }*/
 
 }

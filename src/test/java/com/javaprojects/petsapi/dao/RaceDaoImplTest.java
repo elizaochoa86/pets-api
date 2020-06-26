@@ -1,5 +1,6 @@
 package com.javaprojects.petsapi.dao;
 
+import com.javaprojects.petsapi.config.SimpleTestConfig;
 import com.javaprojects.petsapi.entities.Race;
 import com.javaprojects.petsapi.entities.Species;
 import org.junit.Assert;

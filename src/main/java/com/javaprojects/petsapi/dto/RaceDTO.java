@@ -1,53 +1,25 @@
 package com.javaprojects.petsapi.dto;
 
-import com.javaprojects.petsapi.entities.Species;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class RaceDTO {
 
     private int id;
     private String name;
     private String description;
-
     private SpeciesDTO species;
 
-    public RaceDTO(){}
-
-    public RaceDTO(int id, String name, String description, SpeciesDTO species){
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.species = species;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public SpeciesDTO getSpecies() {
-        return species;
-    }
-
-    public void setSpecies(SpeciesDTO species) {
-        this.species = species;
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof RaceDTO
+                && this.id == ((RaceDTO) obj).id
+                && this.name == ((RaceDTO) obj).name
+                && this.description == ((RaceDTO) obj).description
+                && this.species.equals(((RaceDTO) obj).species));
     }
 }

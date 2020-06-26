@@ -5,11 +5,9 @@ import com.javaprojects.petsapi.dto.RaceDTO;
 import com.javaprojects.petsapi.dto.SpeciesDTO;
 import com.javaprojects.petsapi.entities.Race;
 import com.javaprojects.petsapi.entities.Species;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -17,11 +15,11 @@ import java.util.stream.Collectors;
 @Service
 public class RaceServiceImpl implements RaceService {
 
-    @Autowired
     private DAO<Race> raceDAO;
 
-    @Autowired
-    private SpeciesService speciesService;
+    public RaceServiceImpl(DAO<Race> raceDAO) {
+        this.raceDAO = raceDAO;
+    }
 
     @Override
     @Transactional
@@ -34,7 +32,7 @@ public class RaceServiceImpl implements RaceService {
     @Override
     @Transactional
     public Optional<RaceDTO> getById(int id) {
-        return convertToRacesDTO(raceDAO.getById(id));
+        return RaceService.convertToRacesDTO(raceDAO.getById(id));
     }
 
     @Override
@@ -57,39 +55,21 @@ public class RaceServiceImpl implements RaceService {
 
     private List<RaceDTO> convertToListRaceDTO(List<Race> races){
         List<RaceDTO> racesDTO = races.stream().map(race -> {
-            SpeciesDTO species = speciesService.convertToSpeciesDTO(race.getSpecies()).orElse(new SpeciesDTO());
+            SpeciesDTO species = SpecieService.convertToSpeciesDTO(race.getSpecies()).orElse(new SpeciesDTO());
             return new RaceDTO(race.getId(), race.getName(), race.getDescription(), species);
         }).collect(Collectors.toList());
 
         return racesDTO;
     }
 
-    @Override
-    public Optional<RaceDTO> convertToRacesDTO(Race race){
-
-        if(race != null){
-            SpeciesDTO species = speciesService.convertToSpeciesDTO(race.getSpecies()).orElse(new SpeciesDTO());
-            RaceDTO raceDTO = new RaceDTO(race.getId(), race.getName(), race.getDescription(), species);
-
-            return Optional.of(raceDTO);
-        }
-
-        return Optional.empty();
-    }
-
     private Race convertToRace(RaceDTO raceDTO){
-
         Race race = new Race();
         race.setId(raceDTO.getId());
         race.setName(raceDTO.getName());
         race.setDescription(raceDTO.getDescription());
-
         Species species = new Species();
         species.setId(raceDTO.getSpecies().getId());
-
         race.setSpecies(species);
-
         return race;
-
     }
 }

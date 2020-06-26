@@ -1,7 +1,7 @@
 package com.javaprojects.petsapi.controllers;
 
 import com.javaprojects.petsapi.dto.SpeciesDTO;
-import com.javaprojects.petsapi.services.SpeciesService;
+import com.javaprojects.petsapi.services.SpecieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController()
-public class SpeciesController {
+public class SpecieController {
 
     @Autowired
-    private SpeciesService service;
+    private SpecieService service;
 
     @GetMapping("/api/species")
     public List<SpeciesDTO> getAll(){

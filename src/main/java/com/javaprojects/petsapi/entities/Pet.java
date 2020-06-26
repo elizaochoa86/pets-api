@@ -1,7 +1,14 @@
 package com.javaprojects.petsapi.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Pet {
     @Id
@@ -9,57 +16,13 @@ public class Pet {
     private String name;
     private int age;
 
+    @Enumerated(EnumType.STRING)
+    @Column(length = 1)
+    private Sex sex;
+
     @ManyToOne
     @JoinColumn(name="race", nullable=false)
     private Race race;
     private boolean hasChip;
     private boolean vaccinated;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public Race getRace() {
-        return race;
-    }
-
-    public void setRace(Race race) {
-        this.race = race;
-    }
-
-    public boolean isHasChip() {
-        return hasChip;
-    }
-
-    public void setHasChip(boolean hasChip) {
-        this.hasChip = hasChip;
-    }
-
-    public boolean isVaccinated() {
-        return vaccinated;
-    }
-
-    public void setVaccinated(boolean vaccinated) {
-        this.vaccinated = vaccinated;
-    }
 }

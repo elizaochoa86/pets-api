@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class SpeciesDAOImp implements DAO<Species> {
+public class SpecieDAOImp implements DAO<Species> {
 
     @Autowired
     private EntityManager entityManager;
